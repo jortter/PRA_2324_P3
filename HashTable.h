@@ -127,7 +127,7 @@ class HashTable: public Dict<V> {
 		}
 
 		// Devuelve el número de elementos que tiene el Diccionario.
-		int entries() override{
+		int entries() const override{
 			return n;
 		}
 
@@ -160,7 +160,7 @@ class HashTable: public Dict<V> {
 		friend std::ostream& operator<<(std::ostream &out, const HashTable<V> &th){
 			out << "HashTable [entries: " << th.entries() << ", capacity: " << th.capacity() << "]" << "\n";
 			out << "==============" << "\n\n";
-
+			
 			for(int i = 0; i < th.max; i++){
 				out << "== Cubeta " << i << " ==\n\n";
 				// Si no hay elementos en la cubeta, i.e. el único nodo que hay (el primero) apunta a nullptr porque el par key->value es nulo, imprimimos la lista vacía
@@ -168,7 +168,7 @@ class HashTable: public Dict<V> {
 					out << "List => []" << "\n\n";
 				else{
 					out << "List => [";
-					out << "\n";
+					out << "\n";	
 					// Ahora hay que imprimir los pares key->value (aux->data.key y aux->data.value)
 					Node<TableEntry<V>>* aux = th.table[i].getFirst();
 					// Tenemos que ir recorriendo la lista enlazada de la cubeta
@@ -180,17 +180,14 @@ class HashTable: public Dict<V> {
 					out << "]" << "\n\n";
 
 				}
-
+				
 			}
 
 			out << "==============" << "\n";
 			return out;
 
 		}
-		
 
-
-        
 };
 
 #endif

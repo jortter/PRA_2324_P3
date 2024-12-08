@@ -154,7 +154,7 @@ class BSTree {
 
 		// Método destructor. Delega en el método privado recursivo delete_cascade()
 		~BSTree(){
-			delete_cascada(root);
+			delete_cascade(root);
 		}
 };
 

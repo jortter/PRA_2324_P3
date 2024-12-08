@@ -34,7 +34,7 @@ class BSTree {
 			if(n == nullptr){
 				n = new BSNode<T>(e);
 				// Incrementamos el contador de elementos del ABB justo cuando nos creamos el nodo
-				n_elem++;
+				nelem++;
 			}else if(n->elem == 0){
 				throw std::runtime_error("Elemento duplicado");
 			}else if(n->elem < e){

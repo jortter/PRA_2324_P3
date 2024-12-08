@@ -12,7 +12,7 @@ class BSTree {
 		// atributos
 
 		int nelem;			// n de elementos almacenados en el ABB
-		BSNode<T> *root;	// nodo raíz del ABB
+		BSNode<T>* root;	// nodo raíz del ABB
 
 		// métodos
 
@@ -31,17 +31,29 @@ class BSTree {
 		
 		// Método recursivo para la inserción ordenada de elementos. Inserta el elemento e de tipo T de manera ordenada en el (sub-)árbol cuya raíz es n. Devuelve el nodo que encabeza dicho (sub-)árbol modificado. Si el elemento e ya existe, lanza un std::runtime_error
 		BSNode<T>* insert(BSNode<T>* n, T e){
+			// Casos base
+			// Si mi raíz apunta a nullptr, debo crear un nuevo nodo al que apunte la raíz
 			if(n == nullptr){
 				n = new BSNode<T>(e);
 				// Incrementamos el contador de elementos del ABB justo cuando nos creamos el nodo
 				nelem++;
-			}else if(n->elem == 0){
-				throw std::runtime_error("Elemento duplicado");
-			}else if(n->elem < e){
+			}
+			// Si el elemento e a insertar ya existe en el árbol, lanzamos excepción
+			else if(n->elem == e){
+				throw std::runtime_error("El elemento ya existe en el árbol");
+			}
+
+			// Casos recursivos
+			// Si el elemento de la raíz es < e, inserto e en el subárbol derecho
+			else if(n->elem < e){
 				n->right = insert(n->right, e);
-			}else{
+			}
+			// Si el elemento de la raíz es > e, inserto e en el subárbol izquierdo
+			else{
 				n->left = insert(n->left, e);
 			}
+			// Incrementamos el contador del número de elementos en el ABB
+			// Al final, devolvemos el nodo que encabeza el subárbol modificado
 			return n;
 		}
 
@@ -137,7 +149,7 @@ class BSTree {
 		
 		// Busca y devuelve el elemento  e de tipo T en el ABB.  Actúa como método lanzadera del método privado recursivo search(BSNode<T>* n, T e).  Notar que deberá devolver el elemento contenido por el nodo devuelto por el método privado
 		T search(T e) const{
-		return search(root, e)->elem;
+			return search(root, e)->elem;
 		}
 		
 		// Sobrecarga del operador[]. Actúa como interfaz al método search(T e)

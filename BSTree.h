@@ -32,7 +32,9 @@ class BSTree {
 		// Método recursivo para la inserción ordenada de elementos. Inserta el elemento e de tipo T de manera ordenada en el (sub-)árbol cuya raíz es n. Devuelve el nodo que encabeza dicho (sub-)árbol modificado. Si el elemento e ya existe, lanza un std::runtime_error
 		BSNode<T>* insert(BSNode<T>* n, T e){
 			if(n == nullptr){
-				return new BSNode<T>(e);
+				n = new BSNode<T>(e);
+				// Incrementamos el contador de elementos del ABB justo cuando nos creamos el nodo
+				n_elem++;
 			}else if(n->elem == 0){
 				throw std::runtime_error("Elemento duplicado");
 			}else if(n->elem < e){

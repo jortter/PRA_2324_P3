@@ -47,7 +47,7 @@ class BSTree {
 
 		// Recorrido inorden o simétrico del (sub-)árbol cuya raíz es n para mostrar a través de out los elementos ordenados de menor a mayor
 		void print_inorder(std::ostream &out, BSNode<T>* n) const{
-			if(n != 0){
+			if(n != nullptr){
 				print_inorder(out, n->left);
 				out << n->elem << " ";
 				print_inorder(out, n->right);
@@ -68,7 +68,14 @@ class BSTree {
 					n->elem = max(n->left);
 					n->left = remove_max(n->left);
 				}else{													// 1 o 0 descendiente
-					n = n->right;
+					// Si la izquierda apunta a algo, que nuestra raíz apunte a eso
+					if(n->left != nullptr){
+						n = n->left;
+					}
+					// Si la derecha apunta a algo, que nuestra ráiz apunte a eso
+					else{
+						n = n->right;
+					}
 				}
 			}
 			return n;

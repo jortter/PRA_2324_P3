@@ -44,6 +44,18 @@ class TableEntry {
 			return out;
 		}
 
+		// Para BSTreeDict
+		// Sobrecarga global del operador < para determinar que una instancia de TableEntry es menor que otra si su key es menor
+		friend bool operator<(const TableEntry<V> &te1, const TableEntry<V> &te2){
+			return (te1.key < te2.key);
+		}
+
+		// Sobrecarga global del operador > para determinar que una instancia de TableEntry es mayor que otra si su key es mayor
+		friend bool operator>(const TableEntry<V> &te1, const TableEntry<V> &te2){
+			// Negamos el resultado del operador <
+			return (te1.key > te2.key);
+		}
+
 };
 
 #endif
